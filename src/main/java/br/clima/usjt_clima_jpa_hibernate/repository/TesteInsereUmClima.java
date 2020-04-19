@@ -3,22 +3,21 @@ package br.clima.usjt_clima_jpa_hibernate.repository;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
-import br.clima.usjt_clima_jpa_hibernate.model.Temperatura;
+import br.clima.usjt_clima_jpa_hibernate.model.Clima;
 
-public class TesteAtualizaTemperatura {
+public class TesteInsereUmClima {
 
 	public static void main(String[] args) {
 		EntityManager manager = JPAUtil.getEntityManager();
 		EntityTransaction transaction = manager.getTransaction();
 		transaction.begin();
-		Temperatura t = manager.find(Temperatura.class, 1L);
-		t.setTempMin("24°");
-		t.setTempMax("27°");
-		t.setHumidadeAr("40%");
-		t.setLatitude("80°");
-		t.setLongitude("60°");
-		t.setDescricao("Sem nuvens no céu");
-		t.setDataHora("19:23");
+		Clima c = new Clima();
+		c.setTempMin("17°");
+		c.setTempMax("23°");
+		c.setUmidaRelativa("80%");
+		c.setDescricao("céu aberto");
+		c.setDataHora("19/04/2020");
+		manager.persist(c);
 		transaction.commit();
 		manager.close();
 		JPAUtil.close();

@@ -2,17 +2,15 @@ package br.clima.usjt_clima_jpa_hibernate.repository;
 
 import javax.persistence.EntityManager;
 
-import br.clima.usjt_clima_jpa_hibernate.model.Clima;
+import br.clima.usjt_clima_jpa_hibernate.model.Cidade;
 
-public class TesteBuscaPorIdComGetReference {
-
+public class TesteBuscaOneToMany {
 	public static void main(String[] args) {
 		EntityManager manager = JPAUtil.getEntityManager();
-		Clima c = manager.getReference(Clima.class, 1L);
-		System.out.println(c);
+		Cidade c = manager.find(Cidade.class, 1L);
+		System.out.println(c.getClimas());
 		manager.close();
 		JPAUtil.close();
-
 	}
-
 }
+
